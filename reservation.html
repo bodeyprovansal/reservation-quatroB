@@ -1,154 +1,72 @@
 <!DOCTYPE html>
 <html>
-<style>
+  <head>
+    <title>Computer Repair</title>
+    <style>
+      input, select, textarea {
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        display: block;
+        margin: 8px 0 15px 0;
+        max-width: 550px;
+        padding: 12px 20px;
+        width: 100%;
+      }
 
-#dt {
-  width: 13%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+      input[type=submit] {
+        background-color: #6699FF;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 14px 20px;
+      }
 
+      input[type=submit]:hover {
+        background-color: #6698AA;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Computer Repair</h1>
+    <p>Submit the following form to submit a reservation</p>
 
-#ti {
-  width: 10%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box; 
-}
+    <form action="/cgi-bin/reservation.py" method="post">
+      <label for="repair_time">Time:</label><br/>
+      <input id="repair_time" type="time" name="repair_time" value="9:00"/>
 
-#rc {
-  width: 30%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+      <label for="repair_date">Date:</label><br/>
+      <input type="date" id="repair_date" name="repair_date"/>
 
-#dc {
-  width: 30%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+      <label for="repair_category_id">Repair:</label>
+      <select id="repair_category_id" name="repair_category_id">
+        <option value="1">Broken Screen</option>
+        <option value="2">Loss of Data</option>
+        <option value="3">Signs of A Virus</option>
+        <option value="4">Not Charging</option>
+        <option value="5">Other</option>
+      </select>
 
-#fn, #ln, #pn, #ea {
-  width: 30%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+      <label for="repair_description">Any Additional Details:</label><br/>
+      <textarea id="repair_description" name="repair_description" rows="15"></textarea>
+      <br/>
+      <br/>
+      <br/>
 
-#rk {
-  width: 30%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+      <h3>Contact Info</h3>
+      <input type="text" name="first_name" placeholder="First Name">
+      <input type="text" name="last_name" placeholder="Last Name">
+      <input type="text" name="phone_number" placeholder="Phone Number">
+      <input type="text" name="email_address" placeholder="Email Address (Optional)">
+      <input type="submit" value="Make Reservation" name="make_reservation"/>
+      <br/>
+      <br/>
+      <br/>
 
-input[type=submit] {
-  width = 100%;
-  background-color: #6699FF;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #6698AA;
-}
-
-div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 50px;
-}
-</style>
-
-<body>
-<h1>Computer Repair</h1>
-
-<p>Submit the following form to submit a reservation</p>
-<form action="/cgi-bin/reservation.py" method = "post">
-  
-  <!-- Time Drop-Down -->
-  <!-- <label for="ti">Time:</label>
-  <select id="ti" name="repair_time">
-            <option value="9AM">9:00 AM</option>
-            <option value="10AM">10:00 AM</option>
-            <option value="11AM">11:00 AM</option>
-            <option value="12PM">12:00 PM</option>
-            <option value="1PM">1:00 PM</option>
-            <option value="2PM">2:00 PM</option>
-            <option value="3PM">3:00 PM</option>
-            <option value="4PM">4:00 PM</option>
-  </select> -->
-  <label for="ti">Time:</label>
-  <input id="ti" type="time" name="repair_time" value="9:00">
-  <!-- Date Drop-Down -->
-  <label for="dt">Date:</label>
-  <input type="date" id="dt" name="repair_date"/>
-  <br>
-  
-  <!-- Repair Category Drop-Down -->
-  <label for="rc">Repair:</label>
-  <select id="rc" name="repair_category">
-            <option value="1">Broken Screen</option>
-            <option value="2">Loss of Data</option>
-            <option value="3">Signs of A Virus</option>
-            <option value="4">Not Charging</option>
-            <option value="5">Other</option>
-  </select>
-  <br>
-  <br>
-  <!-- Text Area -->
-  <label for="dc">Any Additional Details:</label>
-  <textarea name="description" id="dc" rows="15" cols"20">
-  </textarea>
-  <br>
-  <h3>Contact Info</h3>
-  
-  <input type="text" id="fn" name="first_name" 
-    placeholder="First Name">
-  
-  <input type="text" id="ln" name="last_name" 
-    placeholder="Last Name">
-  
-  <input type="text" id="pn" name="phone_number" 
-    placeholder="Phone Number">
-    
-  <input type="text" id="ea" name="email_address" 
-    placeholder="Email Address (Optional)">
-  
-  <!-- Submit Reservation Button -->
-  <input type = "submit" value="Make Reservation" name="make_reservation"/>
-  <br><br><br>
-  
-  <h2>Need To Cancel a Reservation?</h2>
-  <label for="rk">Enter Reservation Key to Cancel:</label>
-  <input type="text" id="rk" name="reservation_key" placeholder="abc-1234">
-  <input type = "submit" value="Cancel Reservation" name="cancel_reservation"/>
-</form>
-
-</body>
+      <h2>Need To Cancel a Reservation?</h2>
+      <label for="reservation_key">Enter Reservation Key to Cancel:</label>
+      <input type="text" id="reservation_key" name="reservation_key" placeholder="abc-1234"/>
+      <input type="submit" value="Cancel Reservation" name="cancel_reservation"/>
+    </form>
+  </body>
 </html>

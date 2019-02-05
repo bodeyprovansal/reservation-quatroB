@@ -35,7 +35,11 @@ CREATE TABLE reservations (
   reservation_id INT PRIMARY KEY AUTO_INCREMENT,
   customer_id INT NOT NULL,
   order_id INT NOT NULL,
-  reservation_key VARCHAR(10) NOT NULL
+  reservation_key VARCHAR(10) NOT NULL,
+
+  CONSTRAINT reservations_fk_customers
+    FOREIGN KEY (customer_id)
+    REFERENCES customers (customer_id)
 );
 
 INSERT INTO categories VALUES
